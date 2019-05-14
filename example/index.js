@@ -5,7 +5,8 @@ const app = express()
 const routes = getRoutes('.routes')
 
 routes.forEach(route => {
+  console.log(` • Adding route: ${route.path}`)
   app.get(route.path, require(route.callback))
 })
 
-app.listen(8080, () => console.log('Server running on http://localhost:8080'))
+app.listen(8080, () => console.log('\nServer running on http://localhost:8080'))

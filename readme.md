@@ -11,7 +11,7 @@ npm i @ind.ie/web-routes-from-files
 ## Use
 
 ```js
-const getRoutes = require ('recursive-directory-structure-to-web-route-map')
+const getRoutes = require ('web-routes-from-files')
 
 const routes = getRoutes('.')
 
@@ -36,7 +36,7 @@ Given the following directory structure:
 And the following invocation:
 
 ```js
-const getRoutes = require ('recursive-directory-structure-to-web-route-map')
+const getRoutes = require ('web-routes-from-files')
 const routes = getRoutes('.routes')
 ```
 
@@ -56,7 +56,7 @@ Which, for example, you could pass to an [Express](https://expressjs.com/) app:
 
 ```js
 const express = require('express')
-const getRoutes = require ('recursive-directory-structure-to-web-route-map')
+const getRoutes = require ('web-routes-from-files')
 
 const app = express()
 const routes = getRoutes('.routes')
@@ -76,3 +76,7 @@ function route (request, response, next) {
 }
 module.exports = route
 ```
+
+__Note:__ The module will ignore `node_modules` folders and any folder within the root folder being traversed that begins with a dot (i.e., any hidden folder).
+
+__Copyright:__ ⓒ 2019 [Aral Balkan](https://ar.al). Licensed under AGPLv3 or later.
