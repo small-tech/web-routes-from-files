@@ -1,0 +1,17 @@
+{
+  "name": "@ind.ie/web-routes-from-files",
+  "version": "1.0.0",
+  "description": "Recursively traverses a given directory structure and uses convention to create a list of web route objects that map url paths to JavaScript callback files.",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aral Balkan <aral@ind.ie>",
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "express": "^4.16.4"
+  }
+}
