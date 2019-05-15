@@ -1,8 +1,12 @@
 const fs = require('fs')
 const path = require('path')
 
+let directoryRoot = null
+
 function routes (directory) {
   let _routes = []
+
+  if (directoryRoot === null) directoryRoot = new RegExp(`^.*${directory.replace('.', '\\.')}`)
 
   const files = fs.readdirSync(directory, {withFileTypes: true})
 
@@ -22,7 +26,7 @@ function routes (directory) {
       // File.
       //
       let routeCallbackFilePath = path.resolve(path.join(directory, file.name))
-      let routeUrlPath = path.join(directory.replace(/.*\.routes/, ''), file.name.replace('.js', ''))
+      let routeUrlPath = path.join(directory.replace(directoryRoot, ''), file.name.replace('.js', ''))
       routeUrlPath = routeUrlPath.replace(/index$/, '')
       routeUrlPath = routeUrlPath.replace(/\/$/, '')
       if (!routeUrlPath.startsWith('/')) routeUrlPath = `/${routeUrlPath}`

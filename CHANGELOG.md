@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
   - Nothing yet.
 
+## [1.1.1] - 2019-05-15
+
+### Fixed
+
+  - No longer hardcoded to only work with a root folder called `.routes`.
+
 ## [1.1.0] - 2019-05-14
 
 ### Added
