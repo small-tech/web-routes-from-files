@@ -1,9 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-let directoryRoot = null
-
-function routes (directory) {
+function routes (directory, directoryRoot = null) {
   let _routes = []
 
   if (directoryRoot === null) directoryRoot = new RegExp(`^.*${directory.replace('.', '\\.')}`)
@@ -20,7 +18,7 @@ function routes (directory) {
         return
       }
       // Recurse.
-      _routes = _routes.concat(routes(path.join(directory, file.name)))
+      _routes = _routes.concat(routes(path.join(directory, file.name), directoryRoot))
     } else if (file.isFile() && file.name.endsWith('.js')) {
       //
       // File.
