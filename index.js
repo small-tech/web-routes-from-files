@@ -4,7 +4,13 @@ const path = require('path')
 function routes (directory, directoryRoot = null) {
   let _routes = []
 
-  if (directoryRoot === null) directoryRoot = new RegExp(`^.*${directory.replace('.', '\\.')}`)
+  // These shenanigans are for Windows path silliness support.
+  let directoryForRegExp = directory
+  if (process.platform === 'win32') {
+    directoryForRegExp = directoryForRegExp.replace(/\\/g, '\\\\')
+  }
+
+  if (directoryRoot === null) directoryRoot = new RegExp(`^.*${directoryForRegExp.replace('.', '\\.')}`)
 
   const files = fs.readdirSync(directory, {withFileTypes: true})
 
@@ -27,6 +33,10 @@ function routes (directory, directoryRoot = null) {
       let routeUrlPath = path.join(directory.replace(directoryRoot, ''), file.name.replace('.js', ''))
       routeUrlPath = routeUrlPath.replace(/index$/, '')
       routeUrlPath = routeUrlPath.replace(/\/$/, '')
+      // On Windows, the file path slashes are backwards so we have to reverse them.
+      if (process.platform === 'win32') {
+        routeUrlPath = routeUrlPath.replace(/\\/g, '/')
+      }
       if (!routeUrlPath.startsWith('/')) routeUrlPath = `/${routeUrlPath}`
       _routes.push({path: routeUrlPath, callback: routeCallbackFilePath})
     }
