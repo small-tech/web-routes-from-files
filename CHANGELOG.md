@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
   - Nothing yet.
 
+## [1.2.0] - 2019-09-28
+
+### Added
+
+  - Windows support.
+
 ## [1.1.2] - 2019-07-23
 
 ### Fixed

@@ -1,6 +1,6 @@
 {
   "name": "@ind.ie/web-routes-from-files",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Recursively traverses a given directory structure and uses convention to create a list of web route objects that map url paths to JavaScript callback files.",
   "main": "index.js",
   "directories": {
