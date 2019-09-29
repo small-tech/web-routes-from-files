@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
   - Nothing yet.
 
+## [1.2.1] - 2019-09-29
+
+### Fixed
+
+  - Trailing slashes in routes are now handled the same way under Windows as on other platforms.
+
 ## [1.2.0] - 2019-09-28
 
 ### Added

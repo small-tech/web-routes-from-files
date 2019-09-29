@@ -35,6 +35,10 @@ function routes (directory, directoryRoot = null) {
       routeUrlPath = routeUrlPath.replace(/\/$/, '')
       // On Windows, the file path slashes are backwards so we have to reverse them.
       if (process.platform === 'win32') {
+        // Since the code replacing the forward slash at the end will not have caught a backslash at the end
+        // on Windows, do that now.
+        routeUrlPath = routeUrlPath.replace(/\\$/, '')
+        // Replace all backslashes with forwardslashes.
         routeUrlPath = routeUrlPath.replace(/\\/g, '/')
       }
       if (!routeUrlPath.startsWith('/')) routeUrlPath = `/${routeUrlPath}`
