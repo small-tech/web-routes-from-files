@@ -1,15 +1,39 @@
 {
-  "name": "@ind.ie/web-routes-from-files",
-  "version": "1.2.1",
+  "name": "@small-tech/web-routes-from-files",
+  "version": "2.0.0",
   "description": "Recursively traverses a given directory structure and uses convention to create a list of web route objects that map url paths to JavaScript callback files.",
+  "keywords": [
+    "files",
+    "routes",
+    "directory",
+    "map",
+    "web",
+    "paths",
+    "callback",
+    "express",
+    "middleware",
+    "small tech"
+  ],
   "main": "index.js",
+  "funding": {
+    "type": "foundation",
+    "url": "https://small-tech.org/fund-us/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://source.small-tech.org/site.js/lib/web-routes-from-files.git"
+  },
   "directories": {
     "example": "example"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Aral Balkan <aral@ind.ie>",
+  "author": {
+    "name": "Aral Balkan",
+    "email": "aral@small-tech.org",
+    "url": "https://ar.al"
+  },
   "license": "AGPL-3.0-or-later",
   "devDependencies": {
     "express": "^4.16.4"

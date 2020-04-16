@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
   - Nothing yet.
 
+## [2.0.0] - 2020-04-16
+
+### Changed
+
+  - Breaking: change module namespace from @ind.ie to @small-tech.
+  - Update package file and readme to match structure of other related modules.
+  - Update example so it can be run from any path.
+
 ## [1.2.1] - 2019-09-29
 
 ### Fixed
