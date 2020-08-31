@@ -1,6 +1,6 @@
 {
   "name": "@small-tech/web-routes-from-files",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Recursively traverses a given directory structure and uses convention to create a list of web route objects that map url paths to JavaScript callback files.",
   "keywords": [
     "files",
@@ -27,7 +27,7 @@
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape test/*.js | tap-spec"
   },
   "author": {
     "name": "Aral Balkan",
@@ -36,6 +36,8 @@
   },
   "license": "AGPL-3.0-or-later",
   "devDependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "tap-spec": "^5.0.0",
+    "tape": "^5.0.1"
   }
 }

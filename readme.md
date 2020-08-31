@@ -1,6 +1,6 @@
 # Web routes from files
 
-Recursively traverses a given directory structure and uses convention to create a list of web route objects that map url paths to JavaScript callback files.
+Recursively traverses a given directory structure and uses convention to create a list of web route objects that map Express-style URL paths to JavaScript callback files.
 
 ## Installation
 
@@ -30,6 +30,9 @@ Given the following directory structure:
    ├─── my-folder
    │       ├── index.js
    │       └── other.js
+   ├─── person
+   │       └── index_personId__book_bookId.js
+   ├─── rabbit_rabbitName.js
    └─── neat.js
 ```
 
@@ -44,10 +47,12 @@ You will get the following data structure:
 
 ```js
 [
-  { path: '/', file: '.routes/index.js' },
-  { path: '/my-folder', file: '.routes/my-folder/index.js' },
-  { path: '/my-folder/other', file: '.routes/my-folder/other.js' },
-  { path: '/neat', file: '.routes/neat.js' }
+  { path: '/', callback: '.routes/index.js' },
+  { path: '/my-folder', callback: '.routes/my-folder/index.js' },
+  { path: '/my-folder/other', callback: '.routes/my-folder/other.js' },
+  { path: '/person/:personId/book/:bookId', callback: '.routes/person/index_personId__book_bookId.js' },
+  { path: '/rabbit/:rabbitName', callback: '.routes/rabbit_rabbitName.js' },
+  { path: '/neat', callback: '.routes/neat.js' }
 ]
 ```
 
@@ -75,6 +80,15 @@ Your routes should export standard middleware-style functions. e.g.,
 ```js
 function route (request, response, next) {
   response.end('Hello, world!')
+}
+module.exports = route
+```
+
+Routes that take parameters (introduced in version 3.0.0) can access them from the `request.params` object. e.g., in the `.routes/person/index_personId__book_bookId.js` callback file:
+
+```js
+function route (request, response, next) {
+  response.end(`person/${request.params.personId}/book/${request.params.bookId}`)
 }
 module.exports = route
 ```

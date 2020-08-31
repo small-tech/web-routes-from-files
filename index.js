@@ -30,9 +30,22 @@ function routes (directory, directoryRoot = null) {
       // File.
       //
       let routeCallbackFilePath = path.resolve(path.join(directory, file.name))
-      let routeUrlPath = path.join(directory.replace(directoryRoot, ''), file.name.replace('.js', ''))
-      routeUrlPath = routeUrlPath.replace(/index$/, '')
+      let routeUrlPath = path.join(directory.replace(directoryRoot, ''), file.name)
+
+      routeUrlPath = routeUrlPath.replace(/\/?index(.*?)\.js$/, '$1')
+      routeUrlPath = routeUrlPath.replace('.js', '')
       routeUrlPath = routeUrlPath.replace(/\/$/, '')
+
+      // Handle parameter formatting:
+      //
+      // _  : parameter delimeter (/:)
+      // __ : static path fragment delimeter (/)
+      //
+      // e.g., /person/index_personId__book__bookId becomes:
+      //       /person/:personId/book/:bookId
+      routeUrlPath = routeUrlPath.replace(/__/g, '/')
+      routeUrlPath = routeUrlPath.replace(/_/g, '/:')
+
       // On Windows, the file path slashes are backwards so we have to reverse them.
       if (process.platform === 'win32') {
         // Since the code replacing the forward slash at the end will not have caught a backslash at the end
