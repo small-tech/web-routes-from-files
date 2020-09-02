@@ -29,10 +29,13 @@ function routes (directory, directoryRoot = null) {
       //
       // File.
       //
+
       let routeCallbackFilePath = path.resolve(path.join(directory, file.name))
       let routeUrlPath = path.join(directory.replace(directoryRoot, ''), file.name)
 
-      routeUrlPath = routeUrlPath.replace(/\/?index(.*?)\.js$/, '$1')
+      // Note: the regexp is written so that it will strip the leading slash properly
+      // ===== on both Linux-style and Windows environments.
+      routeUrlPath = routeUrlPath.replace(/\/?\\?index(.*?)\.js$/, '$1')
       routeUrlPath = routeUrlPath.replace('.js', '')
       routeUrlPath = routeUrlPath.replace(/\/$/, '')
 

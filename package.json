@@ -1,6 +1,6 @@
 {
   "name": "@small-tech/web-routes-from-files",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Recursively traverses a given directory structure and uses convention to create a list of web route objects that map url paths to JavaScript callback files.",
   "keywords": [
     "files",
