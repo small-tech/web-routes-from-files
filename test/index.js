@@ -15,7 +15,7 @@ test('routes', t => {
     },
     {
       path: '/my-folder',
-      callback: path.join('my-folder', 'index.js')
+      callback: path.join('my-folder', 'index.cjs')
     },
     {
       path: '/my-folder/other',
@@ -23,7 +23,7 @@ test('routes', t => {
     },
     {
       path: '/neat',
-      callback: 'neat.js'
+      callback: 'neat.mjs'
     },
     {
       path: '/person/:personId/book/:bookId',

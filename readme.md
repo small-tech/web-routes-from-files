@@ -28,12 +28,12 @@ Given the following directory structure:
 .routes
    ├─── index.js
    ├─── my-folder
-   │       ├── index.js
+   │       ├── index.cjs
    │       └── other.js
    ├─── person
    │       └── index_personId__book_bookId.js
    ├─── rabbit_rabbitName.js
-   └─── neat.js
+   └─── neat.mjs
 ```
 
 And the following invocation:
@@ -52,7 +52,7 @@ You will get the following data structure:
   { path: '/my-folder/other', callback: '.routes/my-folder/other.js' },
   { path: '/person/:personId/book/:bookId', callback: '.routes/person/index_personId__book_bookId.js' },
   { path: '/rabbit/:rabbitName', callback: '.routes/rabbit_rabbitName.js' },
-  { path: '/neat', callback: '.routes/neat.js' }
+  { path: '/neat', callback: '.routes/neat.mjs' }
 ]
 ```
 
@@ -67,10 +67,12 @@ const getRoutes = require ('..')
 const app = express()
 const routes = getRoutes(path.join(__dirname, '.routes'))
 
-routes.forEach(route => {
-  console.log(` • Adding route: ${route.path}`)
+// Note that while .mjs and .cjs files are supported,
+// this module cannot defy the laws of ECMAScript. So the
+// same rules defining mixing of CommonJS and ESM apply here too.
+if (!route.callback.endsWith('.mjs')) {
   app.get(route.path, require(route.callback))
-})
+}
 
 app.listen(8080, () => console.log('\nServer running on http://localhost:8080'))
 ```

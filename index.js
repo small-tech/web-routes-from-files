@@ -25,7 +25,7 @@ function routes (directory, directoryRoot = null) {
       }
       // Recurse.
       _routes = _routes.concat(routes(path.join(directory, file.name), directoryRoot))
-    } else if (file.isFile() && file.name.endsWith('.js')) {
+    } else if (file.isFile() && (file.name.endsWith('.js') || file.name.endsWith('.cjs') || file.name.endsWith('.mjs'))) {
       //
       // File.
       //
@@ -36,7 +36,11 @@ function routes (directory, directoryRoot = null) {
       // Note: the regexp is written so that it will strip the leading slash properly
       // ===== on both Linux-style and Windows environments.
       routeUrlPath = routeUrlPath.replace(/\/?\\?index(.*?)\.js$/, '$1')
+      routeUrlPath = routeUrlPath.replace(/\/?\\?index(.*?)\.cjs$/, '$1')
+      routeUrlPath = routeUrlPath.replace(/\/?\\?index(.*?)\.mjs$/, '$1')
       routeUrlPath = routeUrlPath.replace('.js', '')
+      routeUrlPath = routeUrlPath.replace('.cjs', '')
+      routeUrlPath = routeUrlPath.replace('.mjs', '')
       routeUrlPath = routeUrlPath.replace(/\/$/, '')
 
       // Handle parameter formatting:
